@@ -49,6 +49,10 @@ namespace Automatas
                     {
                         SiguienteEstado = 2;
                     }
+                    else if (t=='=')
+                    {
+                        SiguienteEstado = 8;
+                    }
                     else
                     {
                         SiguienteEstado = 28;
@@ -142,7 +146,16 @@ namespace Automatas
                         SiguienteEstado = F;
                     }
                     break;
-                    
+                    case 8:
+                    if (t=='=')
+                    {
+                        SiguienteEstado = 8;
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                    }
+                    break;
                 case 28:
                     SETClasificacion(Tipos.Caracter);
                     SiguienteEstado = F;
