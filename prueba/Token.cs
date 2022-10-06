@@ -10,7 +10,7 @@ namespace Prueba
             Identificador, Numero, Asignacion, FinSentencia, Ternario, 
             OperadorRelacional, OperadorTermino, OperadorFactor, 
             IncrementoTermino, IncrementoFactor, Caracter,Inicialización,
-            OperadorLogico
+            OperadorLogico, TipoDato, Zona, Condicion,Ciclo, Cadena
         }
         
         private string Contenido;

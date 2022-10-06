@@ -33,18 +33,17 @@ namespace Prueba
         
         public Lexico()
         {
-            archivo = new StreamReader("C://Users//erixk//Documents//Automatas1//prueba//Entrada.txt");
-            log = new StreamWriter("C://Users//erixk//Documents//Automatas1//prueba//Salida.txt");
+            archivo = new StreamReader("Entrada.txt");
+            log = new StreamWriter("Salida.txt");
             log.AutoFlush = true;
         }
 
         public Lexico(string filename)
         {
             archivo = new StreamReader(filename);
-            log = new StreamWriter("C://Users//erixk//Documents//Automatas1//prueba//Salida.txt");
+            log = new StreamWriter("Salida.txt");
             log.AutoFlush = true;
         }
-
         ~Lexico()
         {
             Console.WriteLine("Destructor");
@@ -167,21 +166,87 @@ namespace Prueba
                     SETClasificacion(Tipos.IncrementoFactor);
                 }
             }
+    
+            else if (c == '<')
+            {
+                SETClasificacion(Tipos.OperadorRelacional);
+                if ((c = (char) archivo.Peek()) == '>')
+                {
+                    buffer += c;
+                    archivo.Read();
+                    SETClasificacion(Tipos.OperadorRelacional);
+                }
+            }
+            else if (c == '!')
+            {
+                SETClasificacion(Tipos.OperadorLogico);
+                if ((c = (char) archivo.Peek()) == '=')
+                {
+                    buffer += c;
+                    archivo.Read();
+                    SETClasificacion(Tipos.OperadorRelacional);
+                }
+            }
+             else if (c == '<' || c == '>')
+            {
+                SETClasificacion(Tipos.OperadorRelacional);
+                if ((c = (char) archivo.Peek()) == '=')
+                {
+                    buffer += c;
+                    archivo.Read();
+                    SETClasificacion(Tipos.OperadorRelacional);
+                }
+            }
             else if(c==':'){
                 SETClasificacion(Tipos.Caracter);
-                if ((c = (char) archivo.Peek()) == ':'|| c== '=')
+                if ((c = (char) archivo.Peek()) == '=')
                 {
                     buffer += c;
                     archivo.Read();
                     SETClasificacion(Tipos.Inicialización);
+                } 
+            }
+            else if(c=='&'){
+                SETClasificacion(Tipos.Caracter);  
+             if ((c = (char) archivo.Peek()) == '&')
+                {
+                    buffer += c;
+                    archivo.Read();
+                    SETClasificacion(Tipos.OperadorLogico);
                 }
+            }
                 
+            else if(c=='|'){
+                SETClasificacion(Tipos.Caracter);  
+             if ((c = (char) archivo.Peek()) == '|')
+                {
+                    buffer += c;
+                    archivo.Read();
+                    SETClasificacion(Tipos.OperadorLogico);
+                }
             }
             else
             {
                 SETClasificacion(Tipos.Caracter);
             }
             SETContenido(buffer);
+
+            if(GETClasificacion()==Tipos.Identificador){
+                switch(GETContenido()){
+                    case "char":
+                    case "int":
+                    case "float": SETClasificacion(Tipos.TipoDato); break;
+                    case "private":
+                    case "protected":
+                    case "public": SETClasificacion(Tipos.Zona); break;
+                    case "if":
+                    case "else":
+                    case "switch": SETClasificacion(Tipos.Condicion); break;
+                    case  "while":
+                    case "do":
+                    case "for": SETClasificacion(Tipos.Ciclo); break;
+                }
+            }
             log.WriteLine(GETContenido() + " = " + GETClasificacion());
             
         }	

@@ -1,0 +1,15 @@
+C:\Users\erixk\Documents\Automatas1\Automatas\bin\Debug\net6.0\Automatas.exe
+C:\Users\erixk\Documents\Automatas1\Automatas\bin\Debug\net6.0\Automatas.deps.json
+C:\Users\erixk\Documents\Automatas1\Automatas\bin\Debug\net6.0\Automatas.runtimeconfig.json
+C:\Users\erixk\Documents\Automatas1\Automatas\bin\Debug\net6.0\Automatas.dll
+C:\Users\erixk\Documents\Automatas1\Automatas\bin\Debug\net6.0\Automatas.pdb
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.csproj.AssemblyReference.cache
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.AssemblyInfoInputs.cache
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.AssemblyInfo.cs
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.csproj.CoreCompileInputs.cache
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.dll
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\refint\Automatas.dll
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.pdb
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\Automatas.genruntimeconfig.cache
+C:\Users\erixk\Documents\Automatas1\Automatas\obj\Debug\net6.0\ref\Automatas.dll
