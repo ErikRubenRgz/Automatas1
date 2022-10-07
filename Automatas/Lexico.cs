@@ -105,7 +105,9 @@ namespace Automatas
                     {
                         SiguienteEstado = 4;
                     }
-                    else if(char.tolower(t)=='e'){
+                    else if(char.tolower(t)=='e')
+                    {
+
                         SiguienteEstado = 5;
                     }
                     else
