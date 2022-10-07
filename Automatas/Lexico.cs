@@ -81,6 +81,23 @@ namespace Automatas
                     {
                         SiguienteEstado = 19;
                     }
+                    else if (t=='+')
+                    {
+                        SiguienteEstado = 20;
+                    }
+                    else if (t=='-')
+                    {
+                        SiguienteEstado = 21;
+                    }
+                    else if (t=='%'||t=='/'||t=='*')
+                    {
+                        SiguienteEstado = 23;
+                    }
+                    else if (t=='?')
+                    {
+                        SiguienteEstado = 25;
+                    }
+                    
                     else
                     {
                         SiguienteEstado = 28;
@@ -133,7 +150,7 @@ namespace Automatas
                     {
                         SiguienteEstado = 4;
                     }
-                    else if(char.tolower(t)=='e')
+                    else if(char.tolower(t)=='E')
                     {
 
                         SiguienteEstado = 5;
@@ -199,13 +216,13 @@ namespace Automatas
                     else
                     {
                         SiguienteEstado = F;
-                        SETClasificacion(Tipos.OperadorRelacional);
+                        SETClasificacion(Tipos.Caracter);
                     }
                     break;
                     case 11:
             
                         SiguienteEstado = F;
-                        SETClasificacion(Tipos.OperadorRelacional);
+                        SETClasificacion(Tipos.Inicializacion);
                     break;
                     case 12:
             
@@ -216,7 +233,7 @@ namespace Automatas
                     if (t=='&')
                     {
                         SiguienteEstado = 14;
-                        SETClasificacion(Tipos.OperadorLogico);
+                        
                     }
                     else
                     {
@@ -226,30 +243,31 @@ namespace Automatas
                     break;
                     case 14:
                     SiguienteEstado = F;
-                        SETClasificacion(Tipos.FinSentencia);
+                        SETClasificacion(Tipos.OperadorLogico);
                     
                     break;
                     case 15:
                     if (t=='|')
                     {
                         SiguienteEstado = 14;
-                        SETClasificacion(Tipos.OperadorLogico);
+                        
                     }
                     else
                     {
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.Caracter);
                     }
+                    break;
                     case 16:
                     if (t=='=')
                     {
                         SiguienteEstado = 18;
-                        SETClasificacion(Tipos.OperadorLogico);
+                        
                     }
                     else
                     {
                         SiguienteEstado = F;
-                        SETClasificacion(Tipos.Caracter);
+                        SETClasificacion(Tipos.OperadorLogico);
                     }
                     break;
                     case 18:
@@ -260,28 +278,58 @@ namespace Automatas
                     if (t=='=')
                     {
                         SiguienteEstado = 18;
-                        SETClasificacion(Tipos.OperadorRelacional);
+                        
                     }
                     else
                     {
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.OperadorRelacional);
                     }
+                    break;
                     case 19:
                     if (t=='='||t=='>')
                     {
                         SiguienteEstado = 18;
-                        SETClasificacion(Tipos.OperadorRelacional);
+                    
                     }
                     else
                     {
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.OperadorRelacional);
                     }
+                    break;
                     case 20:
-                    if (t=='%'||t=='/'||t=='*')
+                    if (t=='=' || t == '+')
                     {
-                        SiguienteEstado = 23;
+                        SiguienteEstado = 22;
+                        SETClasificacion(Tipos.OperadorTermino);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorTermino);
+                    }
+                    break;
+                    case 21:
+                    if (t=='=' || t == '-')
+                    {
+                        SiguienteEstado = 22;
+                        SETClasificacion(Tipos.IncrementoTermino);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.IncrementoTermino);
+                    }
+                    break;
+                    case 22:
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.IncrementoTermino);
+                    break;
+                    case 23:
+                    if (t=='=')
+                    {
+                        SiguienteEstado = 24;
                         SETClasificacion(Tipos.OperadorFactor);
                     }
                     else
@@ -289,6 +337,15 @@ namespace Automatas
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.OperadorFactor);
                     }
+                    break;
+                    case 24:
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.IncrementoTermino);
+                    break;
+                    case 25:
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.Ternario);
+                    break;
                 case 28:
                     SETClasificacion(Tipos.Caracter);
                     SiguienteEstado = F;
