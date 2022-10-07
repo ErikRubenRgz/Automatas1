@@ -53,6 +53,34 @@ namespace Automatas
                     {
                         SiguienteEstado = 8;
                     }
+                    else if (t==':')
+                    {
+                        SiguienteEstado = 10;
+                    }
+                    else if (t==';')
+                    {
+                        SiguienteEstado = 12;
+                    }
+                    else if (t=='&')
+                    {
+                        SiguienteEstado = 13;
+                    }
+                    else if (t=='|')
+                    {
+                        SiguienteEstado = 15;
+                    }
+                    else if (t=='!')
+                    {
+                        SiguienteEstado = 16;
+                    }
+                    else if (t=='>')
+                    {
+                        SiguienteEstado = 17;
+                    }
+                    else if (t=='<')
+                    {
+                        SiguienteEstado = 19;
+                    }
                     else
                     {
                         SiguienteEstado = 28;
@@ -151,7 +179,7 @@ namespace Automatas
                     case 8:
                     if (t=='=')
                     {
-                        SiguienteEstado = 8;
+                        SiguienteEstado = 9;
                     }
                     else
                     {
@@ -159,15 +187,108 @@ namespace Automatas
                     }
                     break;
                     case 9:
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                    break;
+                    case 10:
                     if (t=='=')
                     {
-                        SiguienteEstado = 10;
+                        SiguienteEstado = 11;
+                        
                     }
                     else
                     {
                         SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorRelacional);
                     }
                     break;
+                    case 11:
+            
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                    break;
+                    case 12:
+            
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.FinSentencia);
+                    break;
+                    case 13:
+                    if (t=='&')
+                    {
+                        SiguienteEstado = 14;
+                        SETClasificacion(Tipos.OperadorLogico);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.Caracter);
+                    }
+                    break;
+                    case 14:
+                    SiguienteEstado = F;
+                        SETClasificacion(Tipos.FinSentencia);
+                    
+                    break;
+                    case 15:
+                    if (t=='|')
+                    {
+                        SiguienteEstado = 14;
+                        SETClasificacion(Tipos.OperadorLogico);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.Caracter);
+                    }
+                    case 16:
+                    if (t=='=')
+                    {
+                        SiguienteEstado = 18;
+                        SETClasificacion(Tipos.OperadorLogico);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.Caracter);
+                    }
+                    break;
+                    case 18:
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                        break;
+                    case 17:
+                    if (t=='=')
+                    {
+                        SiguienteEstado = 18;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                    }
+                    case 19:
+                    if (t=='='||t=='>')
+                    {
+                        SiguienteEstado = 18;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorRelacional);
+                    }
+                    case 20:
+                    if (t=='%'||t=='/'||t=='*')
+                    {
+                        SiguienteEstado = 23;
+                        SETClasificacion(Tipos.OperadorFactor);
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.OperadorFactor);
+                    }
                 case 28:
                     SETClasificacion(Tipos.Caracter);
                     SiguienteEstado = F;
