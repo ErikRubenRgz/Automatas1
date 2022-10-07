@@ -97,10 +97,19 @@ namespace Automatas
                     {
                         SiguienteEstado = 25;
                     }
-                    
-                    else
+                    /*
+                    else if (t=="''")
                     {
                         SiguienteEstado = 28;
+                    }
+                    else if (t=="'")
+                    {
+                        SiguienteEstado = 28;
+                    }
+                    */
+                    else
+                    {
+                        SiguienteEstado = 29;
                     }
                     break;
                 case 1:
@@ -124,12 +133,12 @@ namespace Automatas
                     {
                         SiguienteEstado = 3;
                     }
-                    /*
-                    else if (char.tolower(t)=='e')
+                    
+                    else if (char.ToLower(t)=='e')
                     {
                         SiguienteEstado = 5;
                     }
-                    */
+                    
                     else
                     {
                         SiguienteEstado = F;
@@ -150,7 +159,7 @@ namespace Automatas
                     {
                         SiguienteEstado = 4;
                     }
-                    else if(char.tolower(t)=='E')
+                    else if(char.ToLower(t)=='e')
                     {
 
                         SiguienteEstado = 5;
@@ -346,7 +355,39 @@ namespace Automatas
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.Ternario);
                     break;
-                case 28:
+                    /*
+                    case 26:
+                    if (t=='''')
+                    {
+                        SiguienteEstado = 28;
+                        SETClasificacion(Tipos.Cadena);
+                    }
+                    else
+                    {
+                        SiguienteEstado = E;
+                        SETClasificacion(Tipos.EOF);
+                    }
+                    break;
+                    case 27:
+                    if (t=="'")
+                    {
+                        SiguienteEstado = 28;
+                        SETClasificacion(Tipos.Cadena);
+                    }
+                    else
+                    {
+                        SiguienteEstado = E;
+                        SETClasificacion(Tipos.EOF);
+                    }
+                    break;
+                    case 28:
+                    
+                        SiguienteEstado = F;
+                        SETClasificacion(Tipos.Cadena);
+                    
+                    break;
+                    */
+                case 29:
                     SETClasificacion(Tipos.Caracter);
                     SiguienteEstado = F;
                     break;

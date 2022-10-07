@@ -10,7 +10,7 @@ namespace Automatas
             Identificador, Numero, Asignacion, FinSentencia, Ternario, 
             OperadorRelacional, OperadorTermino, OperadorFactor, 
             IncrementoTermino, IncrementoFactor, OperadorLogico, 
-            Inicializacion, TipoDato, Zona, Condicion, Ciclo, Caracter
+            Inicializacion, TipoDato, Zona, Condicion, Ciclo, Caracter,Cadena,EOF
         }
         
         private string Contenido;
