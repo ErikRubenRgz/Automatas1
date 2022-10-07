@@ -158,6 +158,16 @@ namespace Automatas
                         SiguienteEstado = F;
                     }
                     break;
+                    case 9:
+                    if (t=='=')
+                    {
+                        SiguienteEstado = 10;
+                    }
+                    else
+                    {
+                        SiguienteEstado = F;
+                    }
+                    break;
                 case 28:
                     SETClasificacion(Tipos.Caracter);
                     SiguienteEstado = F;
