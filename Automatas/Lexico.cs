@@ -97,16 +97,17 @@ namespace Automatas
                     {
                         SiguienteEstado = 25;
                     }
-                    /*
-                    else if (t=="''")
+                    
+                    else if (t=='"')
                     {
                         SiguienteEstado = 28;
                     }
-                    else if (t=="'")
+                    
+                    else if (t=='\'')
                     {
                         SiguienteEstado = 28;
                     }
-                    */
+                    
                     else
                     {
                         SiguienteEstado = 29;
@@ -145,6 +146,7 @@ namespace Automatas
                     }
                     break;
                 case 3:
+                SETClasificacion(Tipos.Asignacion);
                     if (char.IsDigit(t))
                     {
                         SiguienteEstado = 4;
@@ -155,6 +157,7 @@ namespace Automatas
                     }
                     break;
                 case 4:
+                
                     if (char.IsDigit(t))
                     {
                         SiguienteEstado = 4;
@@ -355,9 +358,9 @@ namespace Automatas
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.Ternario);
                     break;
-                    /*
+                    
                     case 26:
-                    if (t=='''')
+                    if (t=='"')
                     {
                         SiguienteEstado = 28;
                         SETClasificacion(Tipos.Cadena);
@@ -368,8 +371,9 @@ namespace Automatas
                         SETClasificacion(Tipos.EOF);
                     }
                     break;
+                    
                     case 27:
-                    if (t=="'")
+                    if (t=='\'')
                     {
                         SiguienteEstado = 28;
                         SETClasificacion(Tipos.Cadena);
@@ -380,13 +384,14 @@ namespace Automatas
                         SETClasificacion(Tipos.EOF);
                     }
                     break;
+                    
                     case 28:
                     
                         SiguienteEstado = F;
                         SETClasificacion(Tipos.Cadena);
                     
                     break;
-                    */
+                    
                 case 29:
                     SETClasificacion(Tipos.Caracter);
                     SiguienteEstado = F;
