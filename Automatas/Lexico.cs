@@ -110,7 +110,7 @@ namespace Automatas
                     
                     else
                     {
-                        SiguienteEstado = 29;
+                        SiguienteEstado = 0;
                     }
                     break;
                 case 1:
@@ -365,6 +365,10 @@ namespace Automatas
                         SiguienteEstado = 28;
                         SETClasificacion(Tipos.Cadena);
                     }
+                    else if (FinArchivo())
+                    {
+                        SiguienteEstado = E;
+                    }
                     else
                     {
                         SiguienteEstado = E;
@@ -378,11 +382,16 @@ namespace Automatas
                         SiguienteEstado = 28;
                         SETClasificacion(Tipos.Cadena);
                     }
+                    else if (FinArchivo())
+                    {
+                        SiguienteEstado = E;
+                    }
                     else
                     {
                         SiguienteEstado = E;
                         SETClasificacion(Tipos.EOF);
                     }
+                    
                     break;
                     
                     case 28:
@@ -409,6 +418,22 @@ namespace Automatas
 
             while (Estado >= 0)
             {
+                transicion= (char) archivo.Peek();
+                Estado = Automata(Estado, transicion);
+
+                if (Estado >= 0)
+                {
+                    if (Estado > 0)
+                    {
+                        buffer += transicion;
+                    }
+                    archivo.Read();
+                }
+            }
+           if (Estado == E)
+            {
+                throw new Error("ERROR" , log);
+            }
                 transicion = (char) archivo.Peek();
 
                 Estado = Automata(Estado, transicion);
