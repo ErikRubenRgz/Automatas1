@@ -4,6 +4,6 @@
         x26=38.5e+10
         ?===
         <<>>==
-        char,floar,private,else,for,do;
-        "evelyn ti amo <3 """" '''' 
-        
+
+        char, float, private, for, do;
+        "Erik" 'Erik' "Erik

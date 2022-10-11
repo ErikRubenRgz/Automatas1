@@ -100,17 +100,17 @@ namespace Automatas
                     
                     else if (t=='"')
                     {
-                        SiguienteEstado = 28;
+                        SiguienteEstado = 26;
                     }
                     
                     else if (t=='\'')
                     {
-                        SiguienteEstado = 28;
+                        SiguienteEstado = 27;
                     }
                     
                     else
                     {
-                        SiguienteEstado = 0;
+                        SiguienteEstado = 29;
                     }
                     break;
                 case 1:
@@ -363,7 +363,7 @@ namespace Automatas
                     if (t=='"')
                     {
                         SiguienteEstado = 28;
-                        SETClasificacion(Tipos.Cadena);
+                        
                     }
                     else if (FinArchivo())
                     {
@@ -371,8 +371,7 @@ namespace Automatas
                     }
                     else
                     {
-                        SiguienteEstado = E;
-                        SETClasificacion(Tipos.EOF);
+                        SiguienteEstado = 26; 
                     }
                     break;
                     
@@ -380,16 +379,15 @@ namespace Automatas
                     if (t=='\'')
                     {
                         SiguienteEstado = 28;
-                        SETClasificacion(Tipos.Cadena);
                     }
+                    
                     else if (FinArchivo())
                     {
                         SiguienteEstado = E;
                     }
                     else
                     {
-                        SiguienteEstado = E;
-                        SETClasificacion(Tipos.EOF);
+                        SiguienteEstado = 27;  
                     }
                     
                     break;
@@ -418,7 +416,7 @@ namespace Automatas
 
             while (Estado >= 0)
             {
-                transicion= (char) archivo.Peek();
+                transicion = (char) archivo.Peek();
                 Estado = Automata(Estado, transicion);
 
                 if (Estado >= 0)
@@ -432,20 +430,7 @@ namespace Automatas
             }
            if (Estado == E)
             {
-                throw new Error("ERROR" , log);
-            }
-                transicion = (char) archivo.Peek();
-
-                Estado = Automata(Estado, transicion);
-
-                if (Estado >= 0)
-                {
-                    if (Estado > 0)
-                    {
-                        buffer += transicion;
-                    }
-                    archivo.Read();
-                }
+                throw new Error("Error .__." , log);
             }
 
             SETContenido(buffer);
