@@ -1,0 +1,9 @@
+
+        !!=&&&|||
+        +++---*/%+=-=*=/=%=
+        x26=38.5e+10
+        ?===
+        <<>>==
+
+        char, float, private, for, do;
+        "Erik" 'Erik' "Erik

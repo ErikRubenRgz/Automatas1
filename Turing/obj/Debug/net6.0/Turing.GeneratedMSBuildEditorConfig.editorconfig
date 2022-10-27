@@ -6,5 +6,5 @@ build_property.ProjectTypeGuids =
 build_property.InvariantGlobalization = 
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = prueba
-build_property.ProjectDir = c:\Users\erixk\Documents\Automatas1\prueba\
+build_property.RootNamespace = Turing
+build_property.ProjectDir = c:\Users\erixk\Documents\Automatas1\Turing\

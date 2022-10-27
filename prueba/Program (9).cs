@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-StreamWriter sw = new StreamWriter("C:\\Users\\erixk\\Documents\\Automatas1\\prueba\\numero.csv");
+StreamWriter sw = new StreamWriter("numero.csv");
 sw.AutoFlush = true;
 List<double> l = new List<double>();
 

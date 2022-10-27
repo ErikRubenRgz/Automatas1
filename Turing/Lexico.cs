@@ -10,7 +10,39 @@ namespace Automatas
 
         const int F = -1;
         const int E = -2;
-        
+        int [,] TRAND = {
+      //EDO, WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,  ?,  """",  ',  La
+        {0,  0,  F,  1,  2,  29, 1,  20, 21, 8,  10, 12, 13, 15, 16, 17, 19, 23, 23, 23, 26, 26, 27, 29},
+        {1,  F,  F,  1,  1,  F,  1,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {2,  F,  F,  F,  2,  3,  5,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {3,  E,  E,  E,  4,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E},
+        {4,  F,  F,  F,  4,  F,  5,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {5,  E,  E,  E,  7,  E,  E,  6,  6,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E},
+        {6,  E,  E,  E,  7,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E},
+        {7,  F,  F,  F,  7,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {8,  F,  F,  F,  F,  F,  F,  F,  F,  9,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {9,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {10, F,  F,  F,  F,  F,  F,  F,  F,  10, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {11, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {12, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {13, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  14, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {14, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {15, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  14, F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {16, F,  F,  F,  F,  F,  F,  F,  F,  18, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {17, F,  F,  F,  F,  F,  F,  F,  F,  18, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {18, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {19, F,  F,  F,  F,  F,  F,  F,  F,  18, F,  F,  F,  F,  F,  18, F,  F,  F,  F,  F,  F,  F,  F},
+        {20, F,  F,  F,  F,  F,  F,  22, F,  22, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {21, F,  F,  F,  F,  F,  F,  F,  22, 22, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {22, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {23, F,  F,  F,  F,  F,  F,  F,  F,  24, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {24, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {25, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {26, 26, E,  26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 28, 26, 26},
+        {27, 27, E,  27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 27},
+        {28, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},
+        {29, F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F},  
+        };    
         public Lexico()
         {
             archivo = new StreamReader("Entrada.txt");
@@ -30,7 +62,7 @@ namespace Automatas
             Console.WriteLine("Destructor");
         }
 
-        private int Automata(int Estado, char t)
+        private int Turing(int Estado, char t)
         {
             int SiguienteEstado = Estado;
 
