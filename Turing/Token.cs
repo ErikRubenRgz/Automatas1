@@ -1,6 +1,6 @@
 using System;
 
-namespace Automatas
+namespace TURING
 {
     public class Token
     {
@@ -10,7 +10,8 @@ namespace Automatas
             Identificador, Numero, Asignacion, FinSentencia, Ternario, 
             OperadorRelacional, OperadorTermino, OperadorFactor, 
             IncrementoTermino, IncrementoFactor, OperadorLogico, 
-            Inicializacion, TipoDato, Zona, Condicion, Ciclo, Caracter,Cadena
+            Inicializacion, TipoDato, Zona, Condicion, Ciclo, Caracter,Cadena, InicioBloque, FinBloque,
+            ParentesisDerecho,ParentesisIzquierdo
         }
         
         private string Contenido;

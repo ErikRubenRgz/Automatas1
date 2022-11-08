@@ -1,2 +1,24 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+
+namespace TURING
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                Lexico L = new Lexico();
+
+                while (!L.FinArchivo())
+                {
+                    L.nextToken();
+                }
+            }
+            catch (Error e)
+            {
+                Console.WriteLine( e.Message);
+            }
+        } 
+    }
+}

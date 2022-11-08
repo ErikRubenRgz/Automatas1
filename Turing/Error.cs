@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Automatas
+namespace TURING
 {
     public class Error : Exception
     {
