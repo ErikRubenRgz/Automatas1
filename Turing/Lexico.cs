@@ -6,13 +6,14 @@ namespace TURING
     public class Lexico : Token
     {
         StreamReader archivo;
-        StreamWriter log;
+        protected StreamWriter log;
 
         const int F = -1;
         const int E = -2;
-        int [,] TRAND = {
-      //WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,  ?,  "",  ',  La, {,   }, (,  )
-       { 0,  F,  1,  2,  29, 1,  20, 21, 8,  10, 12, 13, 15, 16, 17, 19, 23, 23, 23, 26, 26, 27, 29, 30, 31, 32, 33},
+        int[,] TRAND = {
+
+      //WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,   ?,  "",  ',  La, {,   }, (,  )
+       { 0,  F,  1,  2,  29, 1,  20, 21, 8,  10, 12, 13, 15, 16, 17, 19, 23, 23, 23, 25, 26, 27, 29, 30, 31, 32, 33},
        { F,  F,  1,  1,  F,  1,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
        { F,  F,  F,  2,  3,  5,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
        { E,  E,  E,  4,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E,  E },
@@ -46,9 +47,9 @@ namespace TURING
        { F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
        { F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
        { F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
-    };
 
-         public Lexico()
+    };
+        public Lexico()
         {
             archivo = new StreamReader("Entrada.txt");
             log = new StreamWriter("Salida.txt");
@@ -66,8 +67,10 @@ namespace TURING
         {
             Console.WriteLine("Destructor");
         }
-        void Etiqueta(int Estado){
-            switch(Estado){
+        void Etiqueta(int Estado)
+        {
+            switch (Estado)
+            {
                 case 1: SETClasificacion(Tipos.Identificador); break;
                 case 2: SETClasificacion(Tipos.Numero); break;
                 case 8: SETClasificacion(Tipos.Asignacion); break;
@@ -94,139 +97,141 @@ namespace TURING
                 case 31: SETClasificacion(Tipos.FinBloque); break;
                 case 32: SETClasificacion(Tipos.ParentesisIzquierdo); break;
                 case 33: SETClasificacion(Tipos.ParentesisDerecho); break;
-                
             }
         }
 
-       int Columna(char t)
-        {               
-                if(FinArchivo())
-                    {
-                        return 1;
-                    }
-                if(char.IsWhiteSpace(t))
-                    {
-                        return 0;
-                    }
-                else if(char.ToUpper(t) == 'E')
-                    {
-                        return 5;
-                    }
-                else if(char.IsLetter(t))
-                    {
-                        return 2;
-                    }
-                else if(char.IsLetterOrDigit(t))
-                    {
-                        return 3;
-                    }
-                else if(t == '.')
-                    {
-                        return 4;
-                    }
-                else if(t == '+')
-                    {
-                        return 6;
-                    }
-                else if(t == '-')
-                    {
-                        return 7;
-                    }
-                else if(t == '=')
-                    {
-                        return 8;
-                    }
-                else if(t == ':')
-                    {
-                        return 9;
-                    }
-                else if(t == ';')
-                    {
-                        return 10;
-                    }
-                else if(t == '&')
-                    {
-                        return 11;
-                    }
-                else if(t == '|')
-                    {
-                        return 12;
-                    }
-                else if(t == '!')
-                    {
-                        return 10;
-                    }
-                else if(t == '>')
-                    {
-                        return 14;
-                    }
-                else if(t == '<')
-                    {
-                        return 15;
-                    }
-                else if(t == '*')
-                    {
-                        return 16;
-                    }
-                else if(t == '%')
-                    {
-                        return 17;
-                    }
-                else if(t == '/')
-                    {
-                        return 18;
-                    }
-                else if(t == '?')
-                    {
-                        return 19;
-                    }
-                else if(t == '"')
-                    {
-                        return 20;
-                    }
-                else if(t == '\'')
-                    {
-                        return 21;
-                    }
-                else if(t == '{')
-                    {
-                        return 23;
-                        
-                    }
-                else if(t == '}')
-                    {
-                        return 24;
-                    }
-                else if(t == '(')
-                    {
-                        return 25;
-                    }
-                else if(t == ')')
-                    {
-                        return 26;
-                    }
-                else
-                    {
-                        return 22;
-                    }
+
+        int Columna(Char t)
+        {
+            if (FinArchivo())
+            {
+                return 1;
+            }
+            else if (char.IsWhiteSpace(t))
+            {
+                return 0;
+            }
+            else if (char.ToUpper(t) == 'E')
+            {
+                return 5;
+            }
+            else if (char.IsLetter(t))
+            {
+                return 2;
+            }
+            else if (char.IsLetterOrDigit(t))
+            {
+                return 3;
+            }
+            else if (t == '.')
+            {
+                return 4;
+            }
+            else if (t == '+')
+            {
+                return 6;
+            }
+            else if (t == '-')
+            {
+                return 7;
+            }
+            else if (t == '=')
+            {
+                return 8;
+            }
+            else if (t == ':')
+            {
+                return 9;
+            }
+            else if (t == ';')
+            {
+                return 10;
+            }
+            else if (t == '&')
+            {
+                return 11;
+            }
+            else if (t == '|')
+            {
+                return 12;
+            }
+            else if (t == '!')
+            {
+                return 13;
+            }
+            else if (t == '>')
+            {
+                return 14;
+            }
+            else if (t == '<')
+            {
+                return 15;
+            }
+            else if (t == '*')
+            {
+                return 16;
+            }
+            else if (t == '%')
+            {
+                return 17;
+            }
+            else if (t == '/')
+            {
+                return 18;
+            }
+            else if (t == '?')
+            {
+                return 19;
+            }
+            else if (t == '"')
+            {
+                return 20;
+            }
+            else if (t == '\'')
+            {
+                return 21;
+            }
+            else if (t == '{')
+            {
+                return 23;
+            }
+            else if (t == '}')
+            {
+                return 24;
+            }
+            else if (t == '(')
+            {
+                return 25;
+            }
+            else if (t == ')')
+            {
+                return 26;
+            }
+
+            else
+            {
+                return 22;
+            }
         }
-        
-public void nextToken(){
-            string  buffer = "";
-            char    transicion;
+
+
+        public void nextToken()
+        {
+            string buffer = "";
+            char transicion;
 
             int Estado = 0;
 
             while (Estado >= 0)
             {
-                transicion = (char) archivo.Peek();
+                transicion = (char)archivo.Peek();
 
                 Estado = TRAND[Estado, Columna(transicion)];
-                Etiqueta (Estado);
+
+                Etiqueta(Estado);
 
                 if (Estado >= 0)
                 {
-                    archivo.Read();
                     if (Estado > 0)
                     {
                         buffer += transicion;
@@ -234,11 +239,11 @@ public void nextToken(){
                     archivo.Read();
                 }
             }
-           if (Estado == E)
+            if (Estado == E)
             {
-                throw new Error("ERROR" , log);
+                throw new Error("ERROR", log);
             }
-        
+
             SETContenido(buffer);
 
             if (GETClasificacion() == Tipos.Identificador)
@@ -258,12 +263,12 @@ public void nextToken(){
                     case "switch": SETClasificacion(Tipos.Condicion); break;
 
                     case "while":
-                    case "do": 
+                    case "do":
                     case "for": SETClasificacion(Tipos.Ciclo); break;
                 }
             }
-            log.WriteLine(GETContenido() + " = " + GETClasificacion());  
-        }	
+            log.WriteLine(GETContenido() + " = " + GETClasificacion());
+        }
 
         public void cerrarArchivos()
         {

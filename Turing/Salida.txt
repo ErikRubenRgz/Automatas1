@@ -1,4 +1,2 @@
-{ = InicioBloque
-} = FinBloque
-( = ParentesisIzquierdo
-) = ParentesisDerecho
+! = OperadorLogico
+Error de Sintaxis: Se espara un #

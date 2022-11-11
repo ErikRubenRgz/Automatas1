@@ -8,8 +8,10 @@ namespace TURING
         {
             try
             {
-                Lexico L = new Lexico();
+                Lenguaje L = new Lenguaje();
 
+                // #include <Identificador.h>
+ 
                 while (!L.FinArchivo())
                 {
                     L.nextToken();
@@ -17,8 +19,8 @@ namespace TURING
             }
             catch (Error e)
             {
-                Console.WriteLine( e.Message);
+                Console.WriteLine(e.Message);
             }
-        } 
+        }
     }
 }

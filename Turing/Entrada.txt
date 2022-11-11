@@ -1,2 +1,23 @@
-{ },
-( )
+
+        !!=&&&|||
+        +++---*/%+=-=*=/=%=
+        x26=38.5e+10
+        ?===
+        <<>>==
+
+        char, float, private, for, do;
+        "erik"
+        (
+        )
+        {
+                ?
+        }
+        :
+        #include<stdio.h>
+        #include<conio.h>
+        void main()
+        {
+                int a,b,c,d,e;
+                printf
+                scanf
+        }

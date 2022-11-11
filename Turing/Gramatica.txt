@@ -1,0 +1,26 @@
+//Gramatica: C
+// Analizador Sintáctivo: Parser de descenso recursivo
+
+Programa -> Librerias Main
+Librerias -> #include <Identificador.h> Librerias?
+Main -> void main 
+          { 
+            TipoDato ListaIdentificadores;
+            Lista_Instrucciones
+          }
+          Lista_Instrucciones -> printf | scanf Lista_Instrucciones?
+Lista_Instrucciones -> printf | scanf Lista_Instrucciones?
+
+Metodologia:
+
+a) Crear una clase Lenguaje
+b) Heredar la clase Sintaxis
+c) Programar los 2 constructores para ejecutar los de lexico
+d) Cada producción es un método de tipo void y sin argumentos
+e) La primera producción es publica y el resto es privada
+f) El cuerpo del método es el lado derecho de la produccion
+   - Del lado derecho de la produccion hay simbolos
+   - EL simbolo puede ser terminal o no terminal (ST, SNT)
+   - Los SNT son producciones y cada producción es un método
+     entonces se invoca el método 
+   - El ST es un token por lo tanto invocar MATCH
