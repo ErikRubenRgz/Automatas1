@@ -11,7 +11,7 @@ namespace TURING
             OperadorRelacional, OperadorTermino, OperadorFactor, 
             IncrementoTermino, IncrementoFactor, OperadorLogico, 
             Inicializacion, TipoDato, Zona, Condicion, Ciclo, Caracter,Cadena, InicioBloque, FinBloque,
-            ParentesisDerecho,ParentesisIzquierdo
+            ParentesisDerecho,ParentesisIzquierdo, FlujoEntrada, FlujoSalida
         }
         
         private string Contenido;

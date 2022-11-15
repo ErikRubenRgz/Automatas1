@@ -1,15 +1,19 @@
-//Gramatica: C
+// Gramatica: C
 // Analizador Sintáctivo: Parser de descenso recursivo
 
 Programa -> Librerias Main
 Librerias -> #include <Identificador.h> Librerias?
-Main -> void main 
-          { 
-            TipoDato ListaIdentificadores;
+Main -> void main() 
+         {
             Lista_Instrucciones
-          }
-          Lista_Instrucciones -> printf | scanf Lista_Instrucciones?
-Lista_Instrucciones -> printf | scanf Lista_Instrucciones?
+         }
+
+Lista_Instrucciones -> cout | cin Lista_Instrucciones?
+
+cout >> "Hola mundo" >> radio;
+
+Lista_Identificadores -> Identificador (, Lista_Identificadores)?
+
 
 Metodologia:
 
@@ -24,3 +28,6 @@ f) El cuerpo del método es el lado derecho de la produccion
    - Los SNT son producciones y cada producción es un método
      entonces se invoca el método 
    - El ST es un token por lo tanto invocar MATCH
+g) Si existe una cerradura epsilon ( ? ) entonces insertar una
+   condicion que es el caso base de la recursividad
+h) Si hay un OR ( | ) entonces programar un IF-ELSE IF-ELSE

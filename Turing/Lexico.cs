@@ -12,7 +12,7 @@ namespace TURING
         const int E = -2;
         int[,] TRAND = {
 
-      //WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,   ?,  "",  ',  La, {,   }, (,  )
+      //WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,   ?,  "",  ',  La, {,   }, (,  ), >>, <<
        { 0,  F,  1,  2,  29, 1,  20, 21, 8,  10, 12, 13, 15, 16, 17, 19, 23, 23, 23, 25, 26, 27, 29, 30, 31, 32, 33},
        { F,  F,  1,  1,  F,  1,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
        { F,  F,  F,  2,  3,  5,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F,  F },
@@ -51,16 +51,20 @@ namespace TURING
     };
         public Lexico()
         {
-            archivo = new StreamReader("Entrada.txt");
-            log = new StreamWriter("Salida.txt");
+            archivo = new StreamReader("Prueba.cpp");
+            log = new StreamWriter("Prueba.log");
             log.AutoFlush = true;
+            log.riteLine("Archivo: prueba.cpp");
+            log.WriteLine("Hora   : 14-Nov-2022 15:42");
         }
 
         public Lexico(string filename)
         {
             archivo = new StreamReader(filename);
-            log = new StreamWriter("Salida.txt");
+            log = new StreamWriter("Prueba.log");
             log.AutoFlush = true;
+            log.WriteLine("Archivo: ");
+            log.WriteLine("Hora   : ");
         }
 
         ~Lexico()
@@ -97,6 +101,8 @@ namespace TURING
                 case 31: SETClasificacion(Tipos.FinBloque); break;
                 case 32: SETClasificacion(Tipos.ParentesisIzquierdo); break;
                 case 33: SETClasificacion(Tipos.ParentesisDerecho); break;
+                case 34: SETClasificacion(Tipos.FlujoSalida); break;
+                case 35: SETClasificacion(Tipos.FlujoEntrada); break;
             }
         }
 
