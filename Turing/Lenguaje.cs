@@ -7,26 +7,25 @@ using System.Threading.Tasks;
 
     Requirimiento 1: Agregar el token >> (flujoSalida) y el toke << (flujo de Entrada)
     Requerimiento 2: Documentar los tokens en el archiv de Lista: {, }, (, ), >> y <<
-                     MOdelar en JFLAP todos los autómatas
-    Requerimiento 3: Usar el Garbage Collector o el IDisposable para ejectura el destructor
-    Requerimiento 4: El constructor Lexico sin argumento deben de compilar prueba.cpp
-                     y validar que exista, y genera prueba.log. 
-                     El constructor Lexico con argumentos debe de compilar un archivo
-                     con extension CPP (Path) y validar que exista y que tenga extensional
+                     Modelar en JFLAP todos los autómatas
+    Requerimiento 3: El constructor Lexico con argumentos debe validar que tenga extension
                      CPP y generar un LOG con el mismo nombre
 
                      area.cpp -> area.log
 
-    Requerimiento 5: Agregar en archivo LOG agregar el nombre del archivo a compilar y
+    Requerimiento 4: Agregar en archivo LOG agregar el nombre del archivo a compilar y
                      la hora de compilación
 
                      Archvivo: area.cpp
                      Hora de compilación: 14-NOV-2022 15:39
+    Requerimiento 5: Agregar a la consdicion el else (optativo)
+    Requerimiento 6: Agregar la produccion del For
+    Requerimiento 7: Agregar el número de caracter en el error lexico o sintáctico
 */
 
-namespace Turing
+namespace TURING
 {
-    public class Lenguaje : Sintaxis
+    public class Lenguaje : Sintaxis, IDisposable
     {
         public Lenguaje(string nombre) : base(nombre)
         {
@@ -35,6 +34,11 @@ namespace Turing
         public Lenguaje()
         {
 
+        }
+        public void Dispose()
+        {
+            Console.WriteLine("Cerrando Archivos");
+            cerrarArchivos();
         }
         // Programa -> Librerias Main
         public void Programa()
@@ -58,54 +62,206 @@ namespace Turing
             }
             
         }
-        /* 
-         Main -> void main()
-         {
-            TipoDato ListaIdentificadores; 
-            Lista_Instrucciones
-         }
-         */
+        // Main -> void main() BloqueInstricciones
         private void Main()
         {
             match("void");
             match("main");
             match("(");
             match(")");
+            BloqueInstricciones();
+        }
+        // BloqueInstricciones -> { Lista_Instrucciones }
+        private void BloqueInstricciones()
+        {
             match("{");
-            
-            /*
-            match(Tipos.TipoDato);
-            Lista_Identificadores();
-            match(";");
-            */
-
             Lista_Instrucciones();
             match("}");
         }
-        // Lista_Identificadores -> Identificador (, Lista_Identificadores)?
-        private void Lista_Identificadores()
+        //Lista_Instrucciones -> Instruccion Lista_Instrucciones?
+        private void Lista_Instrucciones()
         {
-            match(Tipos.Identificador);
-            if (GETContenido() == ",")
+            Instruccion();
+            if (GETContenido() != "}")
             {
-                match(",");
-                Lista_Identificadores();
+                Lista_Instrucciones();
             }
         }
-        // Lista_Instrucciones -> printf | scanf Lista_Instrucciones?
-        private void Lista_Instrucciones()
+        // Instruccion -> Cout | Cin | If 
+        private void Instruccion()
         {
             if (GETContenido() == "cout")
             {
                 Cout();
             }
-            else
+            else if (GETContenido() == "cin")
             {
                 Cin();
             }
-            if (GETContenido() != "}")
+            else if (GETContenido() == "if")
             {
-                Lista_Instrucciones();
+                If();
+            }
+            else if (GETContenido() == "for")
+            {
+                For();
+            }
+            else if (GETContenido() == "while")
+            {
+                While();
+            }
+            else if (GETContenido() == "do")
+            {
+                Do();
+            }
+            else
+            {
+                Asignacion();
+            }
+        }
+
+        // Asignacion -> Identificador = Expresion ;
+        private void Asignacion()
+        {
+            match(Tipos.Identificador);
+            match(Tipos.Asignacion);
+            Expresion();
+            match(Tipos.FinSentencia);
+        }
+
+        //Expresion  -> Termino MasTermino
+        private void Expresion()
+        {
+            Termino();
+            MasTermino();
+        }
+        //MasTermino -> (OperadorTermino Termino)?
+        private void MasTermino()
+        {
+            if (GETClasificacion() == Tipos.OperadorTermino)
+            {
+                match(Tipos.OperadorTermino);
+                Termino();
+            }
+        }
+        //Termino    -> Factor PorFactor
+        private void Termino()
+        {
+            Factor();
+            PorFactor();
+        }
+        //PorFactor  -> (OperadorFactor Factor)?
+        private void PorFactor()
+        {
+            if (GETClasificacion() == Tipos.OperadorFactor)
+            {
+                match(Tipos.OperadorFactor);
+                Factor();
+            }
+        }
+        //Factor     -> Numero | Identificador | (Expresion)
+        private void Factor()
+        {
+            if (GETClasificacion() == Tipos.Numero)
+            {
+                match(Tipos.Numero);
+            }
+            else if (GETClasificacion() == Tipos.Identificador)
+            {
+                match(Tipos.Identificador);
+            }
+            else
+            {
+                match("(");
+                Expresion();
+                match(")");
+            }
+        }
+
+        // For -> for (identificador Asignacion Numero; Condicion; Ientificador Incremnto Factor)
+        //        BloqueInstricciones | Instruccion
+        private void For()
+        {
+            match("for");
+            if (GETContenido() == "{")
+            {
+                BloqueInstricciones();
+            }
+            else
+            {
+                Instruccion();
+            }
+        }
+        // While -> while (Condicion) BloqueInstricciones | Instruccion ;
+        private void While()
+        {
+            match("while");
+            match("(");
+            Condicion();
+            match(")");
+            if (GETContenido() == "{")
+            {
+                BloqueInstricciones();
+            }
+            else
+            {
+                Instruccion();
+            }
+        }
+
+        // Do -> do BloqueInstricciones | Instruccion while (Condicion) ;
+        private void Do()
+        {
+            match("do");
+            if (GETContenido() == "{")
+            {
+                BloqueInstricciones();
+            }
+            else
+            {
+                Instruccion();
+            }
+            match("while");
+            match("(");
+            Condicion();
+            match(")");
+            match(";");
+        }
+        // If -> if (condicion) BloqueInstricciones | Instruccion
+        private void If()
+        {
+            match("if");
+            match("(");
+            Condicion();
+            match(")");
+            if (GETContenido() == "{")
+            {
+                BloqueInstricciones();
+            }
+            else
+            {
+                Instruccion();
+            }
+        }
+        // Condicion -> numero | identificador OperadorRelacional numero | identificador
+        private void Condicion()
+        {
+            if (GETClasificacion() == Tipos.Numero)
+            {
+                match(Tipos.Numero);
+            }
+            else
+            {
+                match(Tipos.Identificador);
+            }
+            match(Tipos.OperadorRelacional);
+            if (GETClasificacion() == Tipos.Numero)
+            {
+                match(Tipos.Numero);
+            }
+            else
+            {
+                match(Tipos.Identificador);
             }
         }
         // Cout -> cout FlujoSalida Cadena | Identificador ;
@@ -123,7 +279,7 @@ namespace Turing
             }
             match(";");
         }
-        // Cint -> cin FlujoEntrada Identificador ;
+        // Cin -> cin FlujoEntrada Identificador ;
         private void Cin()
         {
             match("cin");
@@ -131,6 +287,5 @@ namespace Turing
             match(Tipos.Identificador);
             match(";");
         }
-
     }
 }

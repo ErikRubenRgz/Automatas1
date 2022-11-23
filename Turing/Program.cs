@@ -8,6 +8,10 @@ namespace TURING
         {
             try
             {
+                using(Lenguaje l=new Lenguaje())
+                {
+                    l.Programa();
+                }
                 Lenguaje L = new Lenguaje();
 
                 // #include <Identificador.h>

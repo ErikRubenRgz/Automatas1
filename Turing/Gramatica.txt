@@ -3,17 +3,38 @@
 
 Programa -> Librerias Main
 Librerias -> #include <Identificador.h> Librerias?
-Main -> void main() 
-         {
-            Lista_Instrucciones
-         }
+Main -> void main() BloqueInstricciones
 
-Lista_Instrucciones -> cout | cin Lista_Instrucciones?
+BloqueInstricciones -> { Lista_Instrucciones }
 
-cout >> "Hola mundo" >> radio;
+Lista_Instrucciones -> Instruccion Lista_Instrucciones?
+
+Instruccion -> Cout | Cin | If | For | While | Do | Asignacion
+
+Asignacion -> Identificador = Expresion ;
+
+Expresion  -> Termino MasTermino
+MasTermino -> (OperadorTermino Termino)?
+Termino    -> Factor PorFactor
+PorFactor  -> (OperadorFactor Factor)?
+Factor     -> Numero | Identificador | (Expresion)
+
+For -> for (Asignacion Condicion; Ientificador Incremnto Factor)
+       BloqueInstricciones | Instruccion
+
+While -> while (Condicion) BloqueInstricciones | Instruccion ;
+
+Do -> do BloqueInstricciones | Instruccion while (Condicion) ;
+
+Cout -> cout FlujoSalida Cadena | Identificador ;
+
+Cin -> cin FlujoEntrada Identificador ;
+
+If -> if (Condicion) BloqueInstricciones | Instruccion (else BloqueInstricciones | Instruccion)?
+
+Condicion -> Expresion OperadorRelacional Expresion
 
 Lista_Identificadores -> Identificador (, Lista_Identificadores)?
-
 
 Metodologia:
 

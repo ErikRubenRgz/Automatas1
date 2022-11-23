@@ -10,6 +10,7 @@ namespace TURING
 
         const int F = -1;
         const int E = -2;
+        protected int Linea;
         int[,] TRAND = {
 
       //WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,   ?,  "",  ',  La, {,   }, (,  ), >>, <<
@@ -51,27 +52,28 @@ namespace TURING
     };
         public Lexico()
         {
-            archivo = new StreamReader("Prueba.cpp");
-            log = new StreamWriter("Prueba.log");
+            archivo = new StreamReader("prueba.cpp");
+            log = new StreamWriter("prueba.log");
             log.AutoFlush = true;
-            log.riteLine("Archivo: prueba.cpp");
+            log.WriteLine("Archivo: prueba.cpp");
             log.WriteLine("Hora   : 14-Nov-2022 15:42");
+            Linea = 1;
         }
 
         public Lexico(string filename)
         {
             archivo = new StreamReader(filename);
-            log = new StreamWriter("Prueba.log");
+            log = new StreamWriter("prueba.log");
             log.AutoFlush = true;
             log.WriteLine("Archivo: ");
             log.WriteLine("Hora   : ");
+            Linea = 1;
         }
-
         ~Lexico()
         {
             Console.WriteLine("Destructor");
         }
-        void Etiqueta(int Estado)
+        private void Etiqueta(int Estado)
         {
             switch (Estado)
             {
@@ -107,7 +109,7 @@ namespace TURING
         }
 
 
-        int Columna(Char t)
+        private int Columna(Char t)
         {
             if (FinArchivo())
             {
@@ -276,7 +278,7 @@ namespace TURING
             log.WriteLine(GETContenido() + " = " + GETClasificacion());
         }
 
-        public void cerrarArchivos()
+        protected void cerrarArchivos()
         {
             log.Close();
             archivo.Close();
