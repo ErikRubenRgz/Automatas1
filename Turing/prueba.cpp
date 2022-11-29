@@ -24,11 +24,12 @@ void main()
     while (a!=15)
         cout > "Hola mundo";
     
-    for
+    for(a=0; a<=10; a++)
     {
-        cout > "Ingrese el radio: ";
+        cout > "Hola mundo";
+        a++;
     }
-
+    
     a = 0;
     a = (3+5)*8 - (10-4)/2;
     radio = pi * (radio * radio);

@@ -1,5 +1,5 @@
 Archivo: prueba.cpp
-Hora   : 14-Nov-2022 15:42
+Compilado:  28/11/2022 11:20:29 p. m.
 # = Caracter
 include = Identificador
 < = OperadorRelacional
@@ -104,42 +104,15 @@ cout = Identificador
 "Hola mundo" = Cadena
 ; = FinSentencia
 for = Ciclo
-{ = InicioBloque
-cout = Identificador
-> = OperadorRelacional
-"Ingrese el radio: " = Cadena
-; = FinSentencia
-} = FinBloque
+( = ParentesisIzquierdo
 a = Identificador
 = = Asignacion
 0 = Numero
 ; = FinSentencia
 a = Identificador
-= = Asignacion
-( = ParentesisIzquierdo
-3 = Numero
-+ = OperadorTermino
-5 = Numero
-) = ParentesisDerecho
-* = OperadorFactor
-8 = Numero
-- = OperadorTermino
-( = ParentesisIzquierdo
+<= = OperadorRelacional
 10 = Numero
-- = OperadorTermino
-4 = Numero
-) = ParentesisDerecho
-/ = OperadorFactor
-2 = Numero
 ; = FinSentencia
-radio = Identificador
-= = Asignacion
-pi = Identificador
-* = OperadorFactor
-( = ParentesisIzquierdo
-radio = Identificador
-* = OperadorFactor
-radio = Identificador
-) = ParentesisDerecho
-; = FinSentencia
-} = FinBloque
+a = Identificador
+++ = IncrementoTermino
+Error de Sintaxis: Se espara un ) en la linea 1

@@ -11,6 +11,8 @@ namespace TURING
         const int F = -1;
         const int E = -2;
         protected int Linea;
+        string datetime = DateTime.Now.ToString("hh:mm:ss tt");
+        string Date = DateTime.Now.ToString("dd/MM/yyyy");
         int[,] TRAND = {
 
       //WS,EOF,Let, Dig, ., E,  +,  -,  =,  :,  ;,  &,  |,  !,  >,  <,  *,  %,  /,   ?,  "",  ',  La, {,   }, (,  ), >>, <<
@@ -52,23 +54,49 @@ namespace TURING
     };
         public Lexico()
         {
-            archivo = new StreamReader("prueba.cpp");
-            log = new StreamWriter("prueba.log");
+            Linea = 1;
+            log = new StreamWriter("Prueba.log");
             log.AutoFlush = true;
             log.WriteLine("Archivo: prueba.cpp");
-            log.WriteLine("Hora   : 14-Nov-2022 15:42");
-            Linea = 1;
+            log.WriteLine("Compilado:  "+Date+" "+datetime); //Requerimiento 4
+            //Investigar como checar si un archivo existe o no existe
+            string path = "Prueba.cpp";
+            bool result = File.Exists(path);
+            if(result == true)
+            {
+                archivo = new StreamReader("Prueba.cpp");
+                
+            }
+            else
+            {
+                throw new Error("Error: El archivo prueba no existe", log);
+            }
         }
 
-        public Lexico(string filename)
+        public Lexico(string nombre)
         {
-            archivo = new StreamReader(filename);
-            log = new StreamWriter("prueba.log");
-            log.AutoFlush = true;
-            log.WriteLine("Archivo: ");
-            log.WriteLine("Hora   : ");
+            string FileName = nombre;
+            string result2;
+            result2 = Path.ChangeExtension(FileName, ".log");
             Linea = 1;
-        }
+            log = new StreamWriter(result2);
+            log.AutoFlush = true;
+            log.WriteLine("Archivo: "+nombre);   
+            log.WriteLine("Compilado:  "+Date+" "+datetime); //Requerimiento 4
+
+            //Investigar como checar si un archivo existe o no existe
+            string path = nombre;
+            bool result = File.Exists(path);
+            if(result == true)
+            {
+                archivo = new StreamReader(nombre);
+                
+            }
+            else
+            {
+                throw new Error("Error: El archivo prueba no existe", log);
+            }
+        }        
         ~Lexico()
         {
             Console.WriteLine("Destructor");

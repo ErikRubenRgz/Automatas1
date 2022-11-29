@@ -2,22 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-/*
-Requerimientos 
-    Requerimiento 1: Agregar el token >> (flujoSalida) y el toke << (flujo de entrada)
-    Requerimiento 2: Documentar los tokens en el archivo de lista {,},(,),>> y <<
-    Requerimiento 3: Usar el Garbage Collector o el     IDisposable para ejecutar el destrcutor
-    Requerimeiento 4: El constructor Lexico sin argumento debe de compilar prueba.cpp 
-                     y validar que exista, y genera prueba.log.
-                     El constructor Lexico con archivo debe de compilar un archivo 
-                     con extensiones CPP (Path) y validar que exista y que tenga extensiones
-                     CPP y generar un LOG con el mismo nombre.
 
-                     area.cpp --> area.log
-    Requerimiento 5: Agregar en archivo LOG agregar el nombre del archivo a compilar y                   
-
-
-*/
 namespace TURING
 {
     public class Sintaxis : Lexico
@@ -33,27 +18,31 @@ namespace TURING
 
         public void match(string espera)
         {
+            // Console.WriteLine(espera + " " + GETContenido());
             if (GETContenido() == espera)
             {
                 nextToken();
             }
             else
             {
-                throw new Error("Error de Sintaxis: Se espara un "+espera,log);
+                throw new Error("Error de Sintaxis: Se espara un "+espera+" en la linea "+Linea,log);
             }
         }
 
         public void match(Tipos espera)
         {
+            // Console.WriteLine(espera + " " + GETClasificacion());
             if (GETClasificacion() == espera)
             {
                 nextToken();
             }
             else
             {
-                throw new Error("Error de Sintaxis: Se espara un "+espera,log);
+                throw new Error("Error de Sintaxis: Se espera un "+espera+" en la linea "+Linea,log);
             }
         }
-
+        //Requerimiento 7: Agregar el número de caracter en el error lexico o sintáctico
+       
+        
     }
 }
