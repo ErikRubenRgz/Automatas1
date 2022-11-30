@@ -92,8 +92,12 @@ namespace TURING
         }
         // Instruccion -> Cout | Cin | If 
         private void Instruccion()
-        {
-            if (GETContenido() == "cout")
+        {   
+            if(GETContenido()=="Librerias")
+            {
+                Librerias();
+            }
+            else if (GETContenido() == "cout")
             {
                 Cout();
             }
@@ -188,6 +192,8 @@ namespace TURING
 
         // For -> for (identificador Asignacion Numero; Condicion; Ientificador Incremnto Factor)
         //        BloqueInstricciones | Instruccion
+        //Requerimiento 6: Agregar la produccion del For                                            (Listo)
+    //Requerimiento 8: Considerar la asignacion en el for
          private void For()
         {
             match("for");
@@ -257,6 +263,7 @@ namespace TURING
             {
                 Instruccion();
             }
+            //Else (optativo) Requerimiento 5
             if(GETContenido() == "else")
             {
                 match("else");
@@ -283,7 +290,6 @@ namespace TURING
                 Instruccion();
             }
         }
-        //E
         // Condicion -> numero | identificador OperadorRelacional numero | identificador
         //Condicion -> Expresion OperadorRelacional Expresion
         private void Condicion()
@@ -337,5 +343,7 @@ namespace TURING
             match(Tipos.Identificador);
             match(";");
         }
+        
+        }
     }
-}
+
