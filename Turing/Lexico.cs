@@ -89,8 +89,11 @@ namespace TURING
             bool result = File.Exists(path);
             if(result == true)
             {
+                if (Path.GetExtension(path) != ".cpp")
+                {
+                    throw new Error("Error: El archivo no es de tipo .cpp", log);
+                }
                 archivo = new StreamReader(nombre);
-                
             }
             else
             {
