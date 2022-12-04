@@ -25,7 +25,7 @@ namespace TURING
             }
             else
             {
-                throw new Error("Error de Sintaxis: Se espara un "+espera+" en la linea "+Linea,log);
+                throw new Error("Error de Sintaxis: Se espera un "+espera+" en la linea "+Linea+" En el numero de caracter "+NumCaracter,log);
             }
         }
 
@@ -38,7 +38,7 @@ namespace TURING
             }
             else
             {
-                throw new Error("Error de Sintaxis: Se espera un "+espera+" en la linea "+Linea,log);
+                throw new Error("Error de Sintaxis: Se espera un "+espera+" en la linea "+Linea+" En el numero de caracter "+NumCaracter,log);
             }
         }
         //Requerimiento 7: Agregar el número de caracter en el error lexico o sintáctico

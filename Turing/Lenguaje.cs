@@ -8,7 +8,7 @@ using System.Threading.Tasks;
     Requirimiento 1: Agregar el token >> (flujoSalida) y el toke << (flujo de Entrada)
     Requerimiento 2: Documentar los tokens en el archiv de Lista: {, }, (, ), >> y <<
                      Modelar en JFLAP todos los autómatas
-    Requerimiento 3: El constructor Lexico con argumentos debe validar que tenga extension 
+    Requerimiento 3: El constructor Lexico con argumentos debe validar que tenga extension     (Listo)
                      CPP y generar un LOG con el mismo nombre
 
                      area.cpp -> area.log
@@ -18,9 +18,9 @@ using System.Threading.Tasks;
 
                      Archvivo: area.cpp
                      Hora de compilación: 14-NOV-2022 15:39
-    Requerimiento 5: Agregar a la consdicion el else (optativo)                             
+    Requerimiento 5: Agregar a la consdicion el else (optativo)                                (Listo)
     Requerimiento 6: Agregar la produccion del For                                            (Listo)
-    Requerimiento 7: Agregar el número de caracter en el error lexico o sintáctico
+    Requerimiento 7: Agregar el número de caracter en el error lexico o sintáctico           (Listo)
     Requerimiento 8: Considerar la asignacion en el for                                       (Listo)
     Requerimiento 9: If -> if (Condicion) BloqueInstricciones | Instruccion (else BloqueInstricciones | Instruccion)? (listo)
                      Condicion -> Expresion OperadorRelacional Expresion
@@ -109,10 +109,6 @@ namespace TURING
             {
                 If();
             }
-            else if(GETContenido()=="else")
-            {
-                Else();
-            }
             else if (GETContenido() == "for")
             {
                 For();
@@ -136,8 +132,15 @@ namespace TURING
         private void Asignacion()
         {
             match(Tipos.Identificador);
-            match(Tipos.Asignacion);
-            Expresion();
+            if(GETContenido() == "++" || GETContenido() == "--")
+            {
+                match(GETContenido());
+            }
+            else
+            {
+                match(Tipos.Asignacion);
+                Expresion();
+            }
             match(Tipos.FinSentencia);
         }
 
@@ -190,18 +193,18 @@ namespace TURING
             }
         }
 
-        // For -> for (identificador Asignacion Numero; Condicion; Ientificador Incremnto Factor)
-        //        BloqueInstricciones | Instruccion
-        //Requerimiento 6: Agregar la produccion del For                                            (Listo)
-    //Requerimiento 8: Considerar la asignacion en el for
-         private void For()
+        //For -> for (identificador Asignacion Numero; Condicion; Ientificador Incremnto Factor)
+        //BloqueInstricciones | Instruccion
+        //Requerimiento 6: Agregar la produccion del For  
+        //Requerimiento 8: Considerar la asignacion en el for
+           private void For()
         {
             match("for");
             match("(");
             Asignacion();
             Condicion();
             match(";");
-            Termino();
+            IncrementoTermino();
             match(")");
             if(GETContenido() == "{")
             {
@@ -277,20 +280,6 @@ namespace TURING
                 }
             }
         }
-        // Else -> else(condicion) BloqueInstrucciones | Instruccion
-        private void Else()
-        {
-            match("else");
-            if (GETContenido() == "{")
-            {
-                BloqueInstricciones();
-            }
-            else
-            {
-                Instruccion();
-            }
-        }
-        // Condicion -> numero | identificador OperadorRelacional numero | identificador
         //Condicion -> Expresion OperadorRelacional Expresion
         private void Condicion()
         {
@@ -334,6 +323,20 @@ namespace TURING
                 match(Tipos.Identificador);
             }
             match(";");
+        }
+         //Incremento -> identificador ++ | --                                                                      
+        private void IncrementoTermino()
+        {
+            match(Tipos.Identificador);
+            if(GETContenido()[0]=='+')
+            {
+                match("++");
+            }
+            else if(GETContenido()[0]=='-')
+            {
+                match("--");
+            }
+
         }
         // Cin -> cin FlujoEntrada Identificador ;
         private void Cin()
