@@ -313,7 +313,7 @@ namespace TURING
         private void Cout()
         {
             match("cout");
-            match(">");
+            FlujoSalida();
             if (GETClasificacion() == Tipos.Cadena)
             {
                 match(Tipos.Cadena);
@@ -336,17 +336,30 @@ namespace TURING
             {
                 match("--");
             }
-
         }
         // Cin -> cin FlujoEntrada Identificador ;
         private void Cin()
         {
             match("cin");
-            match("<");
+            FlujoEntrada();
             match(Tipos.Identificador);
             match(";");
         }
-        
+        // FlujoSalida -> >>
+        private void FlujoSalida()
+        {
+            if(GETContenido()[0]=='>')
+            {
+                match(">>");
+            }
+        }
+        private void FlujoEntrada()
+        {
+            if(GETContenido()[0]=='<')
+            {
+                match("<<");
+            }
         }
     }
+}
 

@@ -10,28 +10,28 @@
 
 void main() 
 {
-    cout > "Ingrese el radio: ";
-    cin  < radio;
+    cout >> "Ingrese el radio: ";
+    cin  << radio;
     if (a<b)
     {
-        cout > "Ingrese el radio: ";
-        cin  < radio;
+        cout >> "Ingrese el radio: ";
+        cin  << radio;
     }
     if (1 != 2)
         if (radio >= 100)
             if(a == b)
-                cout > "Ingrese el radio: ";       
+                cout >> "Ingrese el radio: ";       
     do
     {
-        cout > "Radio";
+        cout >> "Radio";
     } while (a==b);
 
     while (a!=15)
-        cout > "Hola mundo";
+        cout >> "Hola mundo";
     
     for(a=0; a<=10; a++)
     {
-        cout > "Hola mundo";
+        cout >> "Hola mundo";
         a++;
     }
     
